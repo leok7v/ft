@@ -65,8 +65,11 @@ collisions.
 Use of suffixes like `_t` for typedefs and `_e` for `enums` is a bit conflicted:
 
 [POSIX and ISO-9899 on Namespaces](https://stackoverflow.com/q/37369400/665792)
+
 [POSIX and ISO-9899 on suffixes](https://stackoverflow.com/a/56936803/665792)
+
 [IEEE Std 1003.1](https://pubs.opengroup.org/onlinepubs/009695399/xrat/xsh_chap02.html)
+
 [ISO-9899](https://stackoverflow.com/questions/56935852/does-the-iso-9899-standard-has-reserved-any-use-of-the-t-suffix-for-identifiers)
 
 # Controversial
