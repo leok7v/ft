@@ -179,4 +179,4 @@ int main() {
 
 Could be useful for min()/max()/swap() side effects of double evaluation of arguments.
 
-See [rt_generic.h](rt_generic.h)
+See [rt_generics.h](rt_generics.h)
