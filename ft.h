@@ -80,7 +80,7 @@ static int32_t ft_index_of(uint64_t tree[], size_t n, uint64_t const sum) {
         }
         mask >>= 1;
     }
-    return (i == 0 && value < sum) ? -1 : (int32_t)(i - 1);
+    return i == 0 && value < sum ? -1 : (int32_t)(i - 1);
 }
 
 // Why ft_max_bits is 31 and int32_t is used for array indexing?
