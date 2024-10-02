@@ -21,19 +21,6 @@ static inline int32_t ft_lsb(int32_t i) { // least significant bit only
     return i & (~i + 1); // (i & -i)
 }
 
-static void ft_update(uint64_t tree[], size_t n, int32_t i, uint64_t inc) {
-    assert(2 <= n && n <= (1u << ft_max_bits));
-    const int32_t m = (int32_t)n;
-    assert(0 <= i && i < m);
-    i++;  // 1-based indexing
-    assert(i < m + 1);
-    while (i < m + 1) {
-        assert(tree[i - 1] <= UINT64_MAX - inc);
-        tree[i - 1] += inc;
-        i += ft_lsb(i);  // Move to the sibling
-    }
-}
-
 static void ft_init(uint64_t tree[], size_t n, uint64_t a[]) {
     assert(2 <= n && n <= (1u << ft_max_bits));
     const int32_t m = (int32_t)n;
@@ -47,17 +34,26 @@ static void ft_init(uint64_t tree[], size_t n, uint64_t a[]) {
     }
 }
 
+static void ft_update(uint64_t tree[], size_t n, int32_t i, uint64_t inc) {
+    assert(2 <= n && n <= (1u << ft_max_bits));
+    const int32_t m = (int32_t)n;
+    assert(0 <= i && i < m);
+    while (i < m) {
+        assert(tree[i] <= UINT64_MAX - inc);
+        tree[i] += inc;
+        i += ft_lsb(i + 1); // Move to the sibling
+    }
+}
+
 static uint64_t ft_query(const uint64_t tree[], size_t n, int32_t i) {
     // ft_query() cumulative sum of all a[j] for j < i
     assert(2 <= n && n <= (1u << ft_max_bits));
-    if (i == -1) { return 0; }  // index can be -1
-    i++;  // 1-based indexing
     uint64_t sum = 0;
-    while (i > 0) {
-        if (i <= (int32_t)n) { // grandparent can be in tree when parent is not
-            sum += tree[i - 1];
+    while (i >= 0) {  // grandparent can be in the tree when parent is not
+        if (i < (int32_t)n) {
+            sum += tree[i];
         }
-        i -= ft_lsb(i);  // Clear lsb - move to the parent.
+        i -= ft_lsb(i + 1); // Clear lsb - move to the parent.
     }
     return sum;
 }

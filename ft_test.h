@@ -13,7 +13,7 @@
 #define countof(a) (sizeof(a) / sizeof((a)[0]))
 #endif
 
-#define ft_max_test_bits 10 // because ft_test() is exponentially expensive
+#define ft_max_test_bits 11 // because ft_test() is exponentially expensive
 #define ft_max_test_n (1U << ft_max_test_bits)
 
 static uint64_t sum_of(uint64_t* a, int i, int j) { // [i..j] inclusive freq[j]
@@ -77,6 +77,9 @@ static void ft_tests(bool verbose) {
     }
     {
         const size_t n = 4;
+        printf("a[]: ");
+        for (uint32_t i = 0; i < n; i++) { printf("%d ", a[i]); }
+        printf("\n");
         ft_test(tree, n, a, true);
     }
 }
