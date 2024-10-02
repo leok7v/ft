@@ -48,7 +48,7 @@ static void ft_update(uint64_t tree[], size_t n, int32_t i, uint64_t inc) {
 static uint64_t ft_query(const uint64_t tree[], size_t n, int32_t i) {
     // ft_query() cumulative sum of all a[j] for j < i
     assert(2 <= n && n <= (1u << ft_max_bits));
-    uint64_t sum = 0;
+    uint64_t sum = 0; // ft_query(tree, n, -1) == 0
     while (i >= 0) {  // grandparent can be in the tree when parent is not
         if (i < (int32_t)n) {
             sum += tree[i];
