@@ -196,7 +196,7 @@ static int32_t rt_vprintf_implementation(const char* file, int32_t line,
             rt_flush_buffer(&out, file, line, function);
         } else {
             out.wr += n;
-            if (strchr(out.wr - n, '\n')) {
+            if (strchr(out.wr - n, '\n') != null) {
                 rt_flush_buffer(&out, file, line, function);
             } else if ((out.wr - out.rd) >= (size_t)max_width) {
                 rt_flush_buffer(&out, file, line, function);
